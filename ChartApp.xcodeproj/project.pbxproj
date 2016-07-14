@@ -16,6 +16,7 @@
 		FA6C37B41D358406008A6B05 /* ChartAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37B31D358406008A6B05 /* ChartAppTests.m */; };
 		FA6C37BF1D358406008A6B05 /* ChartAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */; };
 		FA6C38251D3792B5008A6B05 /* ChartModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C38241D3792B5008A6B05 /* ChartModelCell.m */; };
+		FA6C38281D37A5E7008A6B05 /* CollumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C38271D37A5E7008A6B05 /* CollumnView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		FA6C37C01D358406008A6B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA6C38231D3792B5008A6B05 /* ChartModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartModelCell.h; sourceTree = "<group>"; };
 		FA6C38241D3792B5008A6B05 /* ChartModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartModelCell.m; sourceTree = "<group>"; };
+		FA6C38261D37A5E7008A6B05 /* CollumnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollumnView.h; sourceTree = "<group>"; };
+		FA6C38271D37A5E7008A6B05 /* CollumnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollumnView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				FA6C37991D358406008A6B05 /* Supporting Files */,
 				FA6C38231D3792B5008A6B05 /* ChartModelCell.h */,
 				FA6C38241D3792B5008A6B05 /* ChartModelCell.m */,
+				FA6C38261D37A5E7008A6B05 /* CollumnView.h */,
+				FA6C38271D37A5E7008A6B05 /* CollumnView.m */,
 			);
 			path = ChartApp;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				FA6C37A11D358406008A6B05 /* ViewController.m in Sources */,
 				FA6C379E1D358406008A6B05 /* AppDelegate.m in Sources */,
 				FA6C38251D3792B5008A6B05 /* ChartModelCell.m in Sources */,
+				FA6C38281D37A5E7008A6B05 /* CollumnView.m in Sources */,
 				FA6C379B1D358406008A6B05 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

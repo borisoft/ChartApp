@@ -10,7 +10,8 @@
 
 @interface ChartModelCell : UIView
 @property (nonatomic) int index;
-@property ( nonatomic) NSUInteger randNumber;
+@property (nonatomic) NSUInteger randNumber;
 @property (nonatomic) float widthCell;
--(void)createCell:(int)from :(int) toNumber :(int)indexCell :(float) widthCell;
+@property (nonatomic) float singleValueHeight;
+-(void)createCell:(int)from :(int)toNumber :(int)indexCell :(float)widthCell :(float) singleValue;
 @end

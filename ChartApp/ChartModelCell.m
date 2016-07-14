@@ -17,9 +17,10 @@
     }
     return  self;
 }
--(void)createCell:(int)from :(int)toNumber :(int)indexCell :(float)widthCell{
+-(void)createCell:(int)from :(int)toNumber :(int)indexCell :(float)widthCell :(float) singleValue{
    self.randNumber =  arc4random_uniform(toNumber)+ from;
     self.index = indexCell;
+    self.singleValueHeight = singleValue;
     self.widthCell = widthCell;
 }
 @end

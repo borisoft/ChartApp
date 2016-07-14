@@ -7,7 +7,9 @@
 //
 
 #import "ViewController.h"
+
 #import "ChartModelCell.h"
+#import "CollumnView.h"
 
 static int const koefic = 2;
 @interface ViewController ()
@@ -16,7 +18,9 @@ static int const koefic = 2;
 @property (nonatomic) int countAllCell;
 @property (strong,nonatomic) NSNumber * countCollumn;
 @property (strong,nonatomic) NSNumber *  maxRandNumber;
-@property (strong,nonatomic) NSMutableArray * dataSource;
+@property (strong,atomic) NSMutableArray * dataSource;
+@property (strong, atomic) NSMutableArray * viewsArray;
+@property(nonatomic) CGPoint contentOffset;
 
 @end
 
@@ -24,6 +28,10 @@ static int const koefic = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.scrollViewChart.delegate =self;
+    
+    self.dataSource = [[NSMutableArray alloc] init];
+    self.viewsArray = [[NSMutableArray alloc] init];
     self.widthCell = 20.0f;
     self.countAllCell = 20000;
     self.maxRandNumber = @1000;
@@ -31,64 +39,79 @@ static int const koefic = 2;
     [self.scrollViewChart setShowsHorizontalScrollIndicator:YES];
     [self.scrollViewChart setShowsVerticalScrollIndicator:NO];
     
-    [self.scrollViewChart setPagingEnabled:YES];
+    [self.scrollViewChart setPagingEnabled:NO];
     
     self.countCollumn =[self countCollumnForScrollView];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self createColumns:@0 :self.maxRandNumber];
-        [self configureView];
-    });
+    
+        [self createDataSourceArray];
+        [self createColumns];
+         
+     //   [self configureView];
+  
 
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void) createDataSourceArray{
-    for( int i = 0 ; i < [self.countCollumn intValue]*koefic;i++){
+    for( int i = 0 ; i < 20000;i++){
         ChartModelCell * cell = [[ChartModelCell alloc] init];
-        [cell createCell:0 :[self.maxRandNumber intValue] : i : self.widthCell];
+        [cell createCell:0 :[self.maxRandNumber intValue] : i : self.widthCell :[[self singleValueForTheColumn] floatValue]];
         [self.dataSource addObject:cell];
+        
+        CollumnView * view = [[CollumnView alloc] init];
+        [self.viewsArray addObject:view];
     }
+    
 }
--(void) configureView{
-    CGRect rect = self.scrollViewChart.frame;
-    UIView * view =[[UIView alloc]init];
-    
-    view.frame =CGRectMake(rect.origin.x,rect.origin.y, rect.size.width*0.2, rect.size.height);
-    UITextView * label = [[UITextView alloc]init];
-    label.text = @"rere";
-    label.textColor = [UIColor redColor];
-    view.backgroundColor = [UIColor grayColor];
-    
-    view.alpha = 0.05;
-    [view addSubview:label];
-    UIView * line1 = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x,rect.size.height-300, 400000, 1)];
-    line1.backgroundColor =[UIColor blackColor];
-    [self.scrollViewChart.superview addSubview:line1];
 
-    [self.scrollViewChart.superview addSubview:view];
-   
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    self.contentOffset = scrollView.contentOffset;
+//    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
 }
--(UIView *)createColumnView:(NSUInteger ) rand :(CGRect) rect :(int) index{
-    UIView * mainView = [[UIView alloc]init];
-    mainView.frame =rect;
-    UIView *tempView = [[UIView alloc]init];
-    float heigthColumn = [[NSNumber numberWithUnsignedInteger:rand ]floatValue]/5;
-    
-    tempView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, heigthColumn);
-    tempView.backgroundColor = [UIColor lightGrayColor];
-    tempView.alpha = 0.4;
-    [mainView addSubview:tempView];
-    UIView *lineView =[[UIView alloc]init];
-    lineView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, 1);
-    lineView.backgroundColor = [UIColor blackColor];
-    //[mainView addSubview:lineView];
-    return mainView;
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+//    self.contentOffset = scrollView.contentOffset;
+//    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
 }
--(void)createColumns:(NSNumber *)from :(NSNumber *)to{
-    CGRect rect = self.scrollViewChart.frame;
-    for( int  i = 0 ; i < 20000;i++){
-        NSUInteger r = arc4random_uniform(1000);
-        [self.scrollViewChart addSubview:[self createColumnView:r :rect :i]];
+//-(void) configureView{
+//    CGRect rect = self.scrollViewChart.frame;
+//    UIView * view =[[UIView alloc]init];
+//    
+//    view.frame =CGRectMake(rect.origin.x,rect.origin.y, rect.size.width*0.2, rect.size.height);
+//    UITextView * label = [[UITextView alloc]init];
+//    label.text = @"rere";
+//    label.textColor = [UIColor redColor];
+//    view.backgroundColor = [UIColor grayColor];
+//    
+//    view.alpha = 0.05;
+//    [view addSubview:label];
+//    UIView * line1 = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x,rect.size.height-300, 400000, 1)];
+//    line1.backgroundColor =[UIColor blackColor];
+//    [self.scrollViewChart.superview addSubview:line1];
+//
+//    [self.scrollViewChart.superview addSubview:view];
+//   
+//}
+//-(UIView *)createColumnView:(NSUInteger ) rand :(CGRect) rect :(int) index{
+//    UIView * mainView = [[UIView alloc]init];
+//    mainView.frame =rect;
+//    UIView *tempView = [[UIView alloc]init];
+//    float heigthColumn = [[NSNumber numberWithUnsignedInteger:rand ]floatValue]/5;
+//    
+//    tempView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, heigthColumn);
+//    tempView.backgroundColor = [UIColor lightGrayColor];
+//    tempView.alpha = 0.4;
+//    [mainView addSubview:tempView];
+//    UIView *lineView =[[UIView alloc]init];
+//    lineView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, 1);
+//    lineView.backgroundColor = [UIColor blackColor];
+//    //[mainView addSubview:lineView];
+//    return mainView;
+//}
+-(void)createColumns{
+
+    for( int  i = 0 ; i < [self.countCollumn intValue]*koefic ;i++){
+       
+        [self.scrollViewChart addSubview:[self.viewsArray[i] drawViewWitchRect:self.scrollViewChart :self.dataSource[i]]];
     }
     
 }
@@ -96,12 +119,28 @@ static int const koefic = 2;
     return [NSNumber numberWithInt: self.view.frame.size.width/self.widthCell];
    }
 -(NSNumber *) singleValueForTheColumn{
-    return [NSNumber numberWithInt: self.view.frame.size.height-100/[self.maxRandNumber intValue]];
+    return [NSNumber numberWithFloat: (self.view.frame.size.height-self.view.frame.size.height*0.2)/[self.maxRandNumber intValue]];
 }
 
+
+
+
+
+
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [scrollView setContentOffset: CGPointMake(20, scrollView.contentOffset.y*20)];
+    self.contentOffset = scrollView.contentOffset;
+    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
+    
 }
+//-(void) updateViews{
+//    if(self.contentOffset.x > self.scrollViewChart.frame.size.width/2){
+//        int  countCollunm= (self.contentOffset.x+self.scrollViewChart.frame.size.width)/self.widthCell;
+//        for()
+//    }
+//}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
