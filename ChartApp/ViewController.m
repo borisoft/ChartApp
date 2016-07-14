@@ -7,10 +7,16 @@
 //
 
 #import "ViewController.h"
+#import "ChartModelCell.h"
 
+static int const koefic = 2;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewChart;
-
+@property (nonatomic) float widthCell;
+@property (nonatomic) int countAllCell;
+@property (strong,nonatomic) NSNumber * countCollumn;
+@property (strong,nonatomic) NSNumber *  maxRandNumber;
+@property (strong,nonatomic) NSMutableArray * dataSource;
 
 @end
 
@@ -18,20 +24,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.scrollViewChart setContentSize:CGSizeMake(20*20000, 0)];
+    self.widthCell = 20.0f;
+    self.countAllCell = 20000;
+    self.maxRandNumber = @1000;
+    [self.scrollViewChart setContentSize:CGSizeMake(self.widthCell*self.countAllCell, 0)];
     [self.scrollViewChart setShowsHorizontalScrollIndicator:YES];
     [self.scrollViewChart setShowsVerticalScrollIndicator:NO];
     
     [self.scrollViewChart setPagingEnabled:YES];
     
-
+    self.countCollumn =[self countCollumnForScrollView];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self createColumns:@0 :@1000];
+        [self createColumns:@0 :self.maxRandNumber];
         [self configureView];
     });
 
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+-(void) createDataSourceArray{
+    for( int i = 0 ; i < [self.countCollumn intValue]*koefic;i++){
+        ChartModelCell * cell = [[ChartModelCell alloc] init];
+        [cell createCell:0 :[self.maxRandNumber intValue] : i : self.widthCell];
+        [self.dataSource addObject:cell];
+    }
 }
 -(void) configureView{
     CGRect rect = self.scrollViewChart.frame;
@@ -76,9 +92,12 @@
     }
     
 }
-
-
-    
+-(NSNumber *)countCollumnForScrollView{
+    return [NSNumber numberWithInt: self.view.frame.size.width/self.widthCell];
+   }
+-(NSNumber *) singleValueForTheColumn{
+    return [NSNumber numberWithInt: self.view.frame.size.height-100/[self.maxRandNumber intValue]];
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [scrollView setContentOffset: CGPointMake(20, scrollView.contentOffset.y*20)];

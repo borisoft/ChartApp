@@ -40,12 +40,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ChartApp/ViewController.m"
-            timestampString = "490107141.655687"
+            timestampString = "490182857.608487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-configureView"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-createDataSourceArray"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

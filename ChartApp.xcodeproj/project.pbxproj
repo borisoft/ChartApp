@@ -15,6 +15,7 @@
 		FA6C37A91D358406008A6B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6C37A71D358406008A6B05 /* LaunchScreen.storyboard */; };
 		FA6C37B41D358406008A6B05 /* ChartAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37B31D358406008A6B05 /* ChartAppTests.m */; };
 		FA6C37BF1D358406008A6B05 /* ChartAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */; };
+		FA6C38251D3792B5008A6B05 /* ChartModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C38241D3792B5008A6B05 /* ChartModelCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		FA6C37BA1D358406008A6B05 /* ChartAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartAppUITests.m; sourceTree = "<group>"; };
 		FA6C37C01D358406008A6B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6C38231D3792B5008A6B05 /* ChartModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartModelCell.h; sourceTree = "<group>"; };
+		FA6C38241D3792B5008A6B05 /* ChartModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartModelCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				FA6C37A71D358406008A6B05 /* LaunchScreen.storyboard */,
 				FA6C37AA1D358406008A6B05 /* Info.plist */,
 				FA6C37991D358406008A6B05 /* Supporting Files */,
+				FA6C38231D3792B5008A6B05 /* ChartModelCell.h */,
+				FA6C38241D3792B5008A6B05 /* ChartModelCell.m */,
 			);
 			path = ChartApp;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			files = (
 				FA6C37A11D358406008A6B05 /* ViewController.m in Sources */,
 				FA6C379E1D358406008A6B05 /* AppDelegate.m in Sources */,
+				FA6C38251D3792B5008A6B05 /* ChartModelCell.m in Sources */,
 				FA6C379B1D358406008A6B05 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
