@@ -7,143 +7,118 @@
 //
 
 #import "ViewController.h"
+#import "ColumnView.h"
+#import "InfoView.h"
+#import "ColumnModel.h"
 
-#import "ChartModelCell.h"
-#import "CollumnView.h"
 
-static int const koefic = 2;
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewChart;
-@property (nonatomic) float widthCell;
-@property (nonatomic) int countAllCell;
-@property (strong,nonatomic) NSNumber * countCollumn;
-@property (strong,nonatomic) NSNumber *  maxRandNumber;
-@property (strong,atomic) NSMutableArray * dataSource;
-@property (strong, atomic) NSMutableArray * viewsArray;
-@property(nonatomic) CGPoint contentOffset;
-
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (strong,nonatomic) NSMutableArray *columnModels;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.scrollViewChart.delegate =self;
+     [super viewDidLoad];
+//     UIView * topView = [[[NSBundle mainBundle] loadNibNamed:@"InfoView" owner:self options:nil] objectAtIndex:0];
+//     topView.frame = self.topInfoView.bounds;
+//     [self.topInfoView addSubview:topView];
     
-    self.dataSource = [[NSMutableArray alloc] init];
-    self.viewsArray = [[NSMutableArray alloc] init];
-    self.widthCell = 20.0f;
-    self.countAllCell = 20000;
-    self.maxRandNumber = @1000;
-    [self.scrollViewChart setContentSize:CGSizeMake(self.widthCell*self.countAllCell, 0)];
-    [self.scrollViewChart setShowsHorizontalScrollIndicator:YES];
-    [self.scrollViewChart setShowsVerticalScrollIndicator:NO];
+    [self configureCollectionView];
     
-    [self.scrollViewChart setPagingEnabled:NO];
-    
-    self.countCollumn =[self countCollumnForScrollView];
-    
-        [self createDataSourceArray];
-        [self createColumns];
-         
-     //   [self configureView];
-  
-
     
     // Do any additional setup after loading the view, typically from a nib.
 }
--(void) createDataSourceArray{
-    for( int i = 0 ; i < 20000;i++){
-        ChartModelCell * cell = [[ChartModelCell alloc] init];
-        [cell createCell:0 :[self.maxRandNumber intValue] : i : self.widthCell :[[self singleValueForTheColumn] floatValue]];
-        [self.dataSource addObject:cell];
-        
-        CollumnView * view = [[CollumnView alloc] init];
-        [self.viewsArray addObject:view];
+-(void)configureCollectionView{
+    CGRect rect = self.bottomView.bounds;
+    
+    self.columnModels = [[NSMutableArray alloc]init];
+        for( int  i  = 0 ; i < 5000; i++){
+            NSNumber *height = [NSNumber numberWithUnsignedInteger:arc4random_uniform(50000)];
+        ColumnModel * model = [ColumnModel modelWitchMaxValue: 50000  Rect:rect height:height];
+        [self.columnModels addObject:model];
     }
+
+    UINib * nib = [UINib nibWithNibName:@"ColumnView" bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"ColumnView"];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource=self;
     
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-//    self.contentOffset = scrollView.contentOffset;
-//    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+  //  [self updateModel];
 }
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-//    self.contentOffset = scrollView.contentOffset;
-//    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
-}
-//-(void) configureView{
-//    CGRect rect = self.scrollViewChart.frame;
-//    UIView * view =[[UIView alloc]init];
-//    
-//    view.frame =CGRectMake(rect.origin.x,rect.origin.y, rect.size.width*0.2, rect.size.height);
-//    UITextView * label = [[UITextView alloc]init];
-//    label.text = @"rere";
-//    label.textColor = [UIColor redColor];
-//    view.backgroundColor = [UIColor grayColor];
-//    
-//    view.alpha = 0.05;
-//    [view addSubview:label];
-//    UIView * line1 = [[UIView alloc]initWithFrame:CGRectMake(rect.origin.x,rect.size.height-300, 400000, 1)];
-//    line1.backgroundColor =[UIColor blackColor];
-//    [self.scrollViewChart.superview addSubview:line1];
-//
-//    [self.scrollViewChart.superview addSubview:view];
-//   
-//}
-//-(UIView *)createColumnView:(NSUInteger ) rand :(CGRect) rect :(int) index{
-//    UIView * mainView = [[UIView alloc]init];
-//    mainView.frame =rect;
-//    UIView *tempView = [[UIView alloc]init];
-//    float heigthColumn = [[NSNumber numberWithUnsignedInteger:rand ]floatValue]/5;
-//    
-//    tempView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, heigthColumn);
-//    tempView.backgroundColor = [UIColor lightGrayColor];
-//    tempView.alpha = 0.4;
-//    [mainView addSubview:tempView];
-//    UIView *lineView =[[UIView alloc]init];
-//    lineView.frame = CGRectMake(20*index,rect.size.height-100-heigthColumn, 20, 1);
-//    lineView.backgroundColor = [UIColor blackColor];
-//    //[mainView addSubview:lineView];
-//    return mainView;
-//}
--(void)createColumns{
-
-    for( int  i = 0 ; i < [self.countCollumn intValue]*koefic ;i++){
-       
-        [self.scrollViewChart addSubview:[self.viewsArray[i] drawViewWitchRect:self.scrollViewChart :self.dataSource[i]]];
-    }
-    
-}
--(NSNumber *)countCollumnForScrollView{
-    return [NSNumber numberWithInt: self.view.frame.size.width/self.widthCell];
-   }
--(NSNumber *) singleValueForTheColumn{
-    return [NSNumber numberWithFloat: (self.view.frame.size.height-self.view.frame.size.height*0.2)/[self.maxRandNumber intValue]];
-}
-
-
-
-
-
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    self.contentOffset = scrollView.contentOffset;
-    NSLog(@" %f  == %f size.width  %f", self.contentOffset.x ,self.contentOffset.y , self.scrollViewChart.frame.size.width);
-    
-}
-//-(void) updateViews{
-//    if(self.contentOffset.x > self.scrollViewChart.frame.size.width/2){
-//        int  countCollunm= (self.contentOffset.x+self.scrollViewChart.frame.size.width)/self.widthCell;
-//        for()
-//    }
-//}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(int)searchMaxVisibleItems{
+    int max = -1;
+    for(ColumnView* column in [self.collectionView visibleCells] ){
+        if([column.model.height intValue] > max){
+            max =[column.model.height intValue] ;
+        }
+    }
+    
+    return  max;
+}
+
+-(void)updateModel{
+    int maxValue =[self searchMaxVisibleItems];
+    for( ColumnView *column in  [self.collectionView visibleCells]){
+        ColumnModel * model = [[ColumnModel alloc]initWitchMaxValue:maxValue Rect:self.bottomView.bounds height:column.model.height];
+        [column setModel:model];
+        [column redraw];
+    }
+       
+}
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//   }
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.imageMy.frame = CGRectMake(0, 0, 100, 100);
+//    
+//}
+
+
+#pragma UICollectionView
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    ColumnView * column =[collectionView dequeueReusableCellWithReuseIdentifier:@"ColumnView" forIndexPath:indexPath];
+    column.model =self.columnModels[indexPath.row];
+    return  column;
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return  1;
+}
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return  self.columnModels.count;
+}
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+   // [self updateModel];
+}
+-(void)collectionView:(UICollectionView *)collectionView {
+    [self updateModel];
+
+}
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    [self updateModel];
+}
+-(void)scrollViewDidEndScroll:(UIScrollView *)scrollView{
+    [self updateModel];
+}
+#pragma UICollectionViewFlowLayout
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGRect rect = self.bottomView.bounds;
+
+    return CGSizeMake(20, rect.size.height);
+}
+
 
 @end

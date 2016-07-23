@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnView" id="gTV-IL-0wX" customClass="ColumnView">
+            <rect key="frame" x="0.0" y="0.0" width="20" height="253"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="20" height="253"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJh-sr-bJr" userLabel="column">
+                        <rect key="frame" x="0.0" y="0.0" width="20" height="258"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn8-pO-6Fp" userLabel="lineView">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="2"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.7803921568627451" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="0iq-2z-DGK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87058823529411766" green="0.96470588235294119" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fn8-pO-6Fp" firstAttribute="top" secondItem="YJh-sr-bJr" secondAttribute="top" id="3eg-PW-ax2"/>
+                            <constraint firstAttribute="trailing" secondItem="fn8-pO-6Fp" secondAttribute="trailing" id="8JB-gu-mUy"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="AL4-EN-UCo"/>
+                            <constraint firstAttribute="width" constant="20" id="Fki-sb-fQP"/>
+                            <constraint firstItem="fn8-pO-6Fp" firstAttribute="leading" secondItem="YJh-sr-bJr" secondAttribute="leading" id="wIc-hB-JBf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="YJh-sr-bJr" secondAttribute="bottom" constant="-5" id="62I-Kk-ubo"/>
+                <constraint firstAttribute="bottom" secondItem="YJh-sr-bJr" secondAttribute="bottom" constant="-5" id="8bj-o6-eiG"/>
+                <constraint firstItem="YJh-sr-bJr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8yw-FG-Mbg"/>
+                <constraint firstItem="YJh-sr-bJr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AZm-Xr-fwi"/>
+                <constraint firstItem="YJh-sr-bJr" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="As5-jC-7Nn"/>
+                <constraint firstItem="YJh-sr-bJr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Qjm-gy-eae"/>
+                <constraint firstAttribute="bottom" secondItem="YJh-sr-bJr" secondAttribute="bottom" id="UbV-uO-KXX"/>
+            </constraints>
+            <size key="customSize" width="50" height="253"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="62I-Kk-ubo"/>
+                    <exclude reference="UbV-uO-KXX"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="columnView" destination="YJh-sr-bJr" id="elG-1H-mwq"/>
+            </connections>
+            <point key="canvasLocation" x="215" y="324.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
