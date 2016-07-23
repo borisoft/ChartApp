@@ -14,6 +14,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (strong,nonatomic) NSMutableArray *columnModels;
 @end
 
@@ -51,6 +52,13 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    UIView * selectedView = [[UIView alloc]init];
+    CGRect frame = self.bottomView.frame;
+    selectedView.frame = CGRectMake(frame.size.width/2- 10, 0, 20, frame.size.height);
+    selectedView.backgroundColor= [UIColor lightGrayColor];
+    selectedView.alpha = 0.2f;
+    [self.bottomView addSubview:selectedView];
+    
   //  [self updateModel];
 }
 - (void)didReceiveMemoryWarning {
@@ -77,15 +85,6 @@
     }
        
 }
-//-(void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//   }
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.imageMy.frame = CGRectMake(0, 0, 100, 100);
-//    
-//}
-
 
 #pragma UICollectionView
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
