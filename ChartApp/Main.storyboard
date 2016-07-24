@@ -70,7 +70,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u10-mv-kn0">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8B-uq-5Dk" userLabel="BottomLineView">
@@ -126,9 +126,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8F-QK-UGK" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="193" width="320" height="375"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C31-bZ-sJN">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eoc-LA-V0E">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="375"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C31-bZ-sJN">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="375"/>
+                                        <color key="backgroundColor" red="0.4550650168" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="2" id="Edg-FB-9XP">
                                             <size key="itemSize" width="20" height="377"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -163,6 +167,7 @@
                         <outlet property="bottomView" destination="r8F-QK-UGK" id="bv0-Gd-mgy"/>
                         <outlet property="collectionView" destination="C31-bZ-sJN" id="eff-6M-M9s"/>
                         <outlet property="numberLabel" destination="307-5P-trx" id="fVb-IZ-GOy"/>
+                        <outlet property="tableView" destination="eoc-LA-V0E" id="m8K-E0-aAn"/>
                         <outlet property="topInfoView" destination="ysJ-4O-6Z3" id="GCh-97-cXm"/>
                     </connections>
                 </viewController>

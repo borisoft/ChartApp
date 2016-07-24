@@ -11,9 +11,11 @@
 #import "InfoView.h"
 #import "ColumnModel.h"
 
-
+int const  countColumns = 20000;
+int const maxValueColumn = 100000;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (strong,nonatomic) NSMutableArray *columnModels;
 @end
@@ -31,13 +33,17 @@
     
     // Do any additional setup after loading the view, typically from a nib.
 }
+-(void)configureTableView{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
 -(void)configureCollectionView{
     CGRect rect = self.bottomView.bounds;
     
     self.columnModels = [[NSMutableArray alloc]init];
-        for( int  i  = 0 ; i < 5000; i++){
-            NSNumber *height = [NSNumber numberWithUnsignedInteger:arc4random_uniform(50000)];
-        ColumnModel * model = [ColumnModel modelWitchMaxValue: 50000  Rect:rect height:height];
+        for( int  i  = 0 ; i < countColumns; i++){
+            NSNumber *height = [NSNumber numberWithUnsignedInteger:arc4random_uniform(maxValueColumn)];
+        ColumnModel * model = [ColumnModel modelWitchMaxValue: maxValueColumn  Rect:rect height:height];
         [self.columnModels addObject:model];
     }
 
@@ -76,13 +82,42 @@
     return  max;
 }
 
+
+-(void)scrollEdit{
+    NSLog(@ " %d", [self.collectionView visibleCells].count);
+    int  count = [self.collectionView visibleCells].count;
+    ColumnView * column = [[self.collectionView visibleCells] objectAtIndex:count/2];
+    NSIndexPath * index = [self.collectionView indexPathForCell:column];
+    
+    [self. collectionView  scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    self.numberLabel.text= [column.model.height stringValue];
+    
+//    int  count = [self.collectionView visibleCells].count;
+//    ColumnView * column = [[self.collectionView visibleCells] objectAtIndex:count/2];
+//    
+//    CGPoint tableViewCenter = [self.collectionView contentOffset];
+//    tableViewCenter.x += self.bottomView.frame.size.width/2;
+//    
+//    [self.collectionView setContentOffset:CGPointMake(10,0) animated:YES];
+//    [self.collectionView reloadData];
+    
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    ColumnView * column= (ColumnView *)[collectionView cellForItemAtIndexPath:indexPath];;
+    
+        [self.collectionView  scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        self.numberLabel.text= [column.model.height stringValue];
+    [self updateModel];
+}
 -(void)updateModel{
     int maxValue =[self searchMaxVisibleItems];
+    
     for( ColumnView *column in  [self.collectionView visibleCells]){
         ColumnModel * model = [[ColumnModel alloc]initWitchMaxValue:maxValue Rect:self.bottomView.bounds height:column.model.height];
         [column setModel:model];
         [column redraw];
     }
+    
        
 }
 
@@ -99,18 +134,35 @@
     return  self.columnModels.count;
 }
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-   // [self updateModel];
+    
+    
 }
--(void)collectionView:(UICollectionView *)collectionView {
+//-(void)collectionView:(UICollectionView *)collectionView {
+//    [self updateModel];
+//
+//}
+//-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    [self updateModel];
+//}
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"decele");
     [self updateModel];
-
-}
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self updateModel];
+    [self scrollEdit];
 }
 -(void)scrollViewDidEndScroll:(UIScrollView *)scrollView{
+    NSLog(@"dsdsds");
     [self updateModel];
+    [self scrollEdit];
 }
+#pragma UITableView
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell * cell =[[UITableViewCell alloc]init];
+    return  cell;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
 #pragma UICollectionViewFlowLayout
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

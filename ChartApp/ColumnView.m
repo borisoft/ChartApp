@@ -20,7 +20,7 @@
 }
 -(void)redraw{
      float height =(self.model.rect.size.height/self.model.maxValue )*[self.model.height floatValue];
-    [UIView animateWithDuration:2.0f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
         
        
         self.columnView.frame = CGRectMake(self.model.rect.origin.x, self.model.rect.origin.y +(self.model.rect.size.height- height), 20, height);

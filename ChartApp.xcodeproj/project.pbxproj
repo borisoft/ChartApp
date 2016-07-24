@@ -17,6 +17,8 @@
 		FA6C37A91D358406008A6B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA6C37A71D358406008A6B05 /* LaunchScreen.storyboard */; };
 		FA6C37B41D358406008A6B05 /* ChartAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37B31D358406008A6B05 /* ChartAppTests.m */; };
 		FA6C37BF1D358406008A6B05 /* ChartAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */; };
+		FAA2835F1D44913900504E57 /* ScaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2835D1D44913900504E57 /* ScaleCell.m */; };
+		FAA283601D44913900504E57 /* ScaleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA2835E1D44913900504E57 /* ScaleCell.xib */; };
 		FAD56A331D4210EA0005BF53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD56A321D4210EA0005BF53 /* Main.storyboard */; };
 		FAD56A3B1D4219810005BF53 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD56A3A1D4219810005BF53 /* InfoView.m */; };
 		FAD56A401D422FF60005BF53 /* InfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD56A3F1D422FF60005BF53 /* InfoViewModel.m */; };
@@ -60,6 +62,9 @@
 		FA6C37BA1D358406008A6B05 /* ChartAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChartAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartAppUITests.m; sourceTree = "<group>"; };
 		FA6C37C01D358406008A6B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA2835C1D44913900504E57 /* ScaleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleCell.h; sourceTree = "<group>"; };
+		FAA2835D1D44913900504E57 /* ScaleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleCell.m; sourceTree = "<group>"; };
+		FAA2835E1D44913900504E57 /* ScaleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScaleCell.xib; sourceTree = "<group>"; };
 		FAD56A321D4210EA0005BF53 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FAD56A391D4219810005BF53 /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
 		FAD56A3A1D4219810005BF53 /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
@@ -181,6 +186,9 @@
 				FA1F9BC11D42535400377810 /* ColumnView.h */,
 				FA1F9BC21D42535400377810 /* ColumnView.m */,
 				FA1F9BC31D42535400377810 /* ColumnView.xib */,
+				FAA2835C1D44913900504E57 /* ScaleCell.h */,
+				FAA2835D1D44913900504E57 /* ScaleCell.m */,
+				FAA2835E1D44913900504E57 /* ScaleCell.xib */,
 			);
 			name = ViewCell;
 			sourceTree = "<group>";
@@ -310,6 +318,7 @@
 				FAD56A331D4210EA0005BF53 /* Main.storyboard in Resources */,
 				FA6C37A91D358406008A6B05 /* LaunchScreen.storyboard in Resources */,
 				FA6C37A61D358406008A6B05 /* Assets.xcassets in Resources */,
+				FAA283601D44913900504E57 /* ScaleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +349,7 @@
 				FA6C37A11D358406008A6B05 /* ViewController.m in Sources */,
 				FA6C379E1D358406008A6B05 /* AppDelegate.m in Sources */,
 				FA6C379B1D358406008A6B05 /* main.m in Sources */,
+				FAA2835F1D44913900504E57 /* ScaleCell.m in Sources */,
 				FA1F9BC41D42535400377810 /* ColumnView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

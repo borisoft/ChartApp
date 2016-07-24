@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface ViewController : UIViewController <UICollectionViewDelegate,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *topInfoView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
