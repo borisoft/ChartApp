@@ -38,11 +38,25 @@ int const maxValueColumn = 100000;
 -(void)configureScale{
     
     self.hightScale =[[[NSBundle mainBundle] loadNibNamed:@"ScaleCell" owner:self options:nil] objectAtIndex:0];
-    ScaleCellModel *  model = [ScaleCellModel modelWitchValueLabel:50 height:self.bottomView.frame.size.height positionY:50000 maxValue:maxValueColumn];
+    ScaleCellModel *  model = [ScaleCellModel modelWitchValueLabel:75 height:self.bottomView.frame.size.height positionY:75000 maxValue:maxValueColumn];
     
-   self.hightScale.model= model;
+    self.hightScale.model= model;
     
     [self.bottomView addSubview:self.hightScale];
+    
+    self.midleScale =[[[NSBundle mainBundle] loadNibNamed:@"ScaleCell" owner:self options:nil] objectAtIndex:0];
+    ScaleCellModel* modelMidle = [ScaleCellModel modelWitchValueLabel:50 height:self.bottomView.frame.size.height positionY:50000 maxValue:maxValueColumn];
+    
+    self.midleScale.model= modelMidle;
+    
+    [self.bottomView addSubview:self.midleScale];
+    
+    self.lowScale =[[[NSBundle mainBundle] loadNibNamed:@"ScaleCell" owner:self options:nil] objectAtIndex:0];
+     ScaleCellModel* modelLow = [ScaleCellModel modelWitchValueLabel:25 height:self.bottomView.frame.size.height positionY:25000 maxValue:maxValueColumn];
+    
+    self.lowScale.model= modelLow;
+    
+    [self.bottomView addSubview:self.lowScale];
 
 }
 -(void)configureCollectionView{
@@ -92,14 +106,14 @@ int const maxValueColumn = 100000;
 
 
 -(void)scrollEdit{
-    NSLog(@ " %d", [self.collectionView visibleCells].count);
-    int  count = [self.collectionView visibleCells].count;
-    ColumnView * column = [[self.collectionView visibleCells] objectAtIndex:count/2];
-    NSIndexPath * index = [self.collectionView indexPathForCell:column];
-    
-    [self. collectionView  scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    self.numberLabel.text= [column.model.height stringValue];
-    
+//    NSLog(@ " %d", [self.collectionView visibleCells].count);
+//    int  count = [self.collectionView visibleCells].count;
+//    ColumnView * column = [[self.collectionView visibleCells] objectAtIndex:count/2];
+//    NSIndexPath * index = [self.collectionView indexPathForCell:column];
+//    
+//    [self. collectionView  scrollToItemAtIndexPath:index atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+//    self.numberLabel.text= [column.model.height stringValue];
+//    
 //    int  count = [self.collectionView visibleCells].count;
 //    ColumnView * column = [[self.collectionView visibleCells] objectAtIndex:count/2];
 //    
@@ -122,6 +136,12 @@ int const maxValueColumn = 100000;
     ScaleCellModel *temp = self.hightScale.model;
     ScaleCellModel *scaleModel = [ScaleCellModel modelWitchValueLabel:temp.valueLabel height:temp.height positionY:temp.positionY maxValue:maxValue];
     self.hightScale.model = scaleModel;
+    temp = self.midleScale.model;
+    scaleModel = [ScaleCellModel modelWitchValueLabel:temp.valueLabel height:temp.height positionY:temp.positionY maxValue:maxValue];
+    self.midleScale.model = scaleModel;
+    temp = self.lowScale.model;
+    scaleModel = [ScaleCellModel modelWitchValueLabel:temp.valueLabel height:temp.height positionY:temp.positionY maxValue:maxValue];
+    self.lowScale.model = scaleModel;
 
     for( ColumnView *column in  [self.collectionView visibleCells]){
         ColumnModel * model = [[ColumnModel alloc]initWitchMaxValue:maxValue Rect:self.bottomView.bounds height:column.model.height];

@@ -25,10 +25,10 @@
                         <rect key="frame" x="64" y="0.0" width="256" height="43"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbb-tN-ZdL">
-                                <rect key="frame" x="0.0" y="21" width="256" height="2"/>
+                                <rect key="frame" x="0.0" y="21" width="256" height="1"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="BO5-dA-nUw"/>
+                                    <constraint firstAttribute="height" constant="1" id="BO5-dA-nUw"/>
                                 </constraints>
                             </view>
                         </subviews>
