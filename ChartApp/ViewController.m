@@ -10,6 +10,8 @@
 #import "ColumnView.h"
 #import "InfoView.h"
 #import "ColumnModel.h"
+#import "ScaleCellModel.h"
+#import "ScaleCell.h"
 
 int const  countColumns = 20000;
 int const maxValueColumn = 100000;
@@ -18,24 +20,37 @@ int const maxValueColumn = 100000;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (strong,nonatomic) NSMutableArray *columnModels;
+@property (strong,nonatomic) NSMutableArray *scaleModels;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
      [super viewDidLoad];
-//     UIView * topView = [[[NSBundle mainBundle] loadNibNamed:@"InfoView" owner:self options:nil] objectAtIndex:0];
-//     topView.frame = self.topInfoView.bounds;
-//     [self.topInfoView addSubview:topView];
     
+    [self configureTableView];
     [self configureCollectionView];
     
     
     // Do any additional setup after loading the view, typically from a nib.
 }
 -(void)configureTableView{
+    [self.tableView registerNib:[UINib nibWithNibName:@"ScaleCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ScaleCell"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    ScaleCellModel * model0 = [[ScaleCellModel alloc]init];
+    model0.value = 100;
+    [self.scaleModels addObject:model0];
+    
+    self.scaleModels = [[NSMutableArray alloc]init];
+    ScaleCellModel * model1 = [[ScaleCellModel alloc]init];
+    model1.value = 50;
+    [self.scaleModels addObject:model1];
+    
+    ScaleCellModel * model2 = [[ScaleCellModel alloc]init];
+    model2.value = 10;
+    [self.scaleModels addObject:model2];
 }
 -(void)configureCollectionView{
     CGRect rect = self.bottomView.bounds;
@@ -156,11 +171,15 @@ int const maxValueColumn = 100000;
 }
 #pragma UITableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell =[[UITableViewCell alloc]init];
+    ScaleCell * cell =(ScaleCell *)[tableView dequeueReusableCellWithIdentifier:@"ScaleCell"];
+
+    cell.model = self.scaleModels[indexPath.row];
+//    CGRect rect = CGRectMake(0, 0, self.bottomView.bounds.size.width, self.bottomView.bounds.size.height/3);
+//    [cell drawRect:rect];
     return  cell;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.scaleModels.count;
 }
 
 #pragma UICollectionViewFlowLayout

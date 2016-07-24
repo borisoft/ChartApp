@@ -20,5 +20,9 @@
 
     // Configure the view for the selected state
 }
+-(void)drawRect:(CGRect)rect{
+    self.conteinerView.frame = rect;
+    self.labelScale.text = [NSString stringWithFormat:@" %d  тыс.",self.model.value];
+}
 
 @end

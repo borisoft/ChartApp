@@ -19,6 +19,7 @@
 		FA6C37BF1D358406008A6B05 /* ChartAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6C37BE1D358406008A6B05 /* ChartAppUITests.m */; };
 		FAA2835F1D44913900504E57 /* ScaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA2835D1D44913900504E57 /* ScaleCell.m */; };
 		FAA283601D44913900504E57 /* ScaleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA2835E1D44913900504E57 /* ScaleCell.xib */; };
+		FAA283631D44DC3500504E57 /* ScaleCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA283621D44DC3500504E57 /* ScaleCellModel.m */; };
 		FAD56A331D4210EA0005BF53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD56A321D4210EA0005BF53 /* Main.storyboard */; };
 		FAD56A3B1D4219810005BF53 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD56A3A1D4219810005BF53 /* InfoView.m */; };
 		FAD56A401D422FF60005BF53 /* InfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD56A3F1D422FF60005BF53 /* InfoViewModel.m */; };
@@ -65,6 +66,8 @@
 		FAA2835C1D44913900504E57 /* ScaleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleCell.h; sourceTree = "<group>"; };
 		FAA2835D1D44913900504E57 /* ScaleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleCell.m; sourceTree = "<group>"; };
 		FAA2835E1D44913900504E57 /* ScaleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScaleCell.xib; sourceTree = "<group>"; };
+		FAA283611D44DC3500504E57 /* ScaleCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleCellModel.h; sourceTree = "<group>"; };
+		FAA283621D44DC3500504E57 /* ScaleCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleCellModel.m; sourceTree = "<group>"; };
 		FAD56A321D4210EA0005BF53 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		FAD56A391D4219810005BF53 /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
 		FAD56A3A1D4219810005BF53 /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				FAD56A3F1D422FF60005BF53 /* InfoViewModel.m */,
 				FA1F9BC61D4255D800377810 /* ColumnModel.h */,
 				FA1F9BC71D4255D800377810 /* ColumnModel.m */,
+				FAA283611D44DC3500504E57 /* ScaleCellModel.h */,
+				FAA283621D44DC3500504E57 /* ScaleCellModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			files = (
 				FAD56A401D422FF60005BF53 /* InfoViewModel.m in Sources */,
 				FAD56A3B1D4219810005BF53 /* InfoView.m in Sources */,
+				FAA283631D44DC3500504E57 /* ScaleCellModel.m in Sources */,
 				FA1F9BC81D4255D800377810 /* ColumnModel.m in Sources */,
 				FA6C37A11D358406008A6B05 /* ViewController.m in Sources */,
 				FA6C379E1D358406008A6B05 /* AppDelegate.m in Sources */,

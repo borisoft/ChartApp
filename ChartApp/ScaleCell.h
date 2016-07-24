@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScaleCellModel.h"
 
 @interface ScaleCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *conteinerView;
 @property (weak, nonatomic) IBOutlet UILabel *labelScale;
-
+@property (strong,nonatomic)ScaleCellModel *model;
 @end
