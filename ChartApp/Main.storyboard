@@ -26,7 +26,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="307-5P-trx">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <color key="textColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -126,14 +126,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8F-QK-UGK" userLabel="BottomView">
                                 <rect key="frame" x="0.0" y="193" width="320" height="375"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="300" sectionHeaderHeight="700" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="eoc-LA-V0E">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="375"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="GKn-3s-8w2" id="Sop-jU-5en"/>
-                                            <outlet property="delegate" destination="GKn-3s-8w2" id="3oa-WY-HHP"/>
-                                        </connections>
-                                    </tableView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="C31-bZ-sJN">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="375"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -171,7 +163,6 @@
                         <outlet property="bottomView" destination="r8F-QK-UGK" id="bv0-Gd-mgy"/>
                         <outlet property="collectionView" destination="C31-bZ-sJN" id="eff-6M-M9s"/>
                         <outlet property="numberLabel" destination="307-5P-trx" id="fVb-IZ-GOy"/>
-                        <outlet property="tableView" destination="eoc-LA-V0E" id="m8K-E0-aAn"/>
                         <outlet property="topInfoView" destination="ysJ-4O-6Z3" id="GCh-97-cXm"/>
                     </connections>
                 </viewController>

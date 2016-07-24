@@ -17,8 +17,8 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpt-4H-vdQ">
                         <rect key="frame" x="0.0" y="0.0" width="64" height="43"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09f-kg-bJ4">
@@ -26,13 +26,12 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbb-tN-ZdL">
                                 <rect key="frame" x="0.0" y="21" width="256" height="2"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="BO5-dA-nUw"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xbb-tN-ZdL" firstAttribute="centerY" secondItem="09f-kg-bJ4" secondAttribute="centerY" id="5Zy-m7-3q1"/>
                             <constraint firstItem="xbb-tN-ZdL" firstAttribute="leading" secondItem="09f-kg-bJ4" secondAttribute="leading" id="Bzj-rf-JvH"/>
@@ -52,6 +51,7 @@
                     <constraint firstItem="vpt-4H-vdQ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.2" id="xwH-za-GIm"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="conteinerView" destination="H2p-sc-9uM" id="K8r-t2-hMb"/>
                 <outlet property="labelScale" destination="vpt-4H-vdQ" id="6ox-JP-RuA"/>

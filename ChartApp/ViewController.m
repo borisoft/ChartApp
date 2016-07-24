@@ -17,40 +17,33 @@ int const  countColumns = 20000;
 int const maxValueColumn = 100000;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (strong,nonatomic) NSMutableArray *columnModels;
-@property (strong,nonatomic) NSMutableArray *scaleModels;
+@property (strong,nonatomic) ScaleCell *hightScale;
+@property (strong,nonatomic) ScaleCell *midleScale;
+@property (strong,nonatomic) ScaleCell *lowScale;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-     [super viewDidLoad];
+    [super viewDidLoad];
     
-    [self configureTableView];
+    [self configureScale];
     [self configureCollectionView];
     
     
     // Do any additional setup after loading the view, typically from a nib.
 }
--(void)configureTableView{
-    [self.tableView registerNib:[UINib nibWithNibName:@"ScaleCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ScaleCell"];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+-(void)configureScale{
     
-    ScaleCellModel * model0 = [[ScaleCellModel alloc]init];
-    model0.value = 100;
-    [self.scaleModels addObject:model0];
+    self.hightScale =[[[NSBundle mainBundle] loadNibNamed:@"ScaleCell" owner:self options:nil] objectAtIndex:0];
+    ScaleCellModel *  model = [ScaleCellModel modelWitchValueLabel:50 height:self.bottomView.frame.size.height positionY:50000 maxValue:maxValueColumn];
     
-    self.scaleModels = [[NSMutableArray alloc]init];
-    ScaleCellModel * model1 = [[ScaleCellModel alloc]init];
-    model1.value = 50;
-    [self.scaleModels addObject:model1];
+   self.hightScale.model= model;
     
-    ScaleCellModel * model2 = [[ScaleCellModel alloc]init];
-    model2.value = 10;
-    [self.scaleModels addObject:model2];
+    [self.bottomView addSubview:self.hightScale];
+
 }
 -(void)configureCollectionView{
     CGRect rect = self.bottomView.bounds;
@@ -126,7 +119,10 @@ int const maxValueColumn = 100000;
 }
 -(void)updateModel{
     int maxValue =[self searchMaxVisibleItems];
-    
+    ScaleCellModel *temp = self.hightScale.model;
+    ScaleCellModel *scaleModel = [ScaleCellModel modelWitchValueLabel:temp.valueLabel height:temp.height positionY:temp.positionY maxValue:maxValue];
+    self.hightScale.model = scaleModel;
+
     for( ColumnView *column in  [self.collectionView visibleCells]){
         ColumnModel * model = [[ColumnModel alloc]initWitchMaxValue:maxValue Rect:self.bottomView.bounds height:column.model.height];
         [column setModel:model];
@@ -168,18 +164,6 @@ int const maxValueColumn = 100000;
     NSLog(@"dsdsds");
     [self updateModel];
     [self scrollEdit];
-}
-#pragma UITableView
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ScaleCell * cell =(ScaleCell *)[tableView dequeueReusableCellWithIdentifier:@"ScaleCell"];
-
-    cell.model = self.scaleModels[indexPath.row];
-//    CGRect rect = CGRectMake(0, 0, self.bottomView.bounds.size.width, self.bottomView.bounds.size.height/3);
-//    [cell drawRect:rect];
-    return  cell;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.scaleModels.count;
 }
 
 #pragma UICollectionViewFlowLayout
