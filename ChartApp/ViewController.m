@@ -56,6 +56,7 @@ int const maxValueColumn = 100000;
     
     self.lowScale.model= modelLow;
     
+    
     [self.bottomView addSubview:self.lowScale];
 
 }
@@ -86,8 +87,10 @@ int const maxValueColumn = 100000;
     selectedView.backgroundColor= [UIColor lightGrayColor];
     selectedView.alpha = 0.2f;
     [self.bottomView addSubview:selectedView];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:(self.bottomView.frame.size.width/40) inSection:0];
+    [self scrollToItemIndexPath:indexPath];
+    [self updateModel];
     
-  //  [self updateModel];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -125,11 +128,17 @@ int const maxValueColumn = 100000;
     
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    ColumnView * column= (ColumnView *)[collectionView cellForItemAtIndexPath:indexPath];;
     
         [self.collectionView  scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-        self.numberLabel.text= [column.model.height stringValue];
+    [self scrollToItemIndexPath:indexPath];
     [self updateModel];
+}
+-(void)scrollToItemIndexPath:(NSIndexPath *)indexPath{
+    [self.collectionView  scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    [self updateModel];
+    [self scrollEdit];
+    ColumnView * column= (ColumnView *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    self.numberLabel.text= [column.model.height stringValue];
 }
 -(void)updateModel{
     int maxValue =[self searchMaxVisibleItems];
@@ -164,10 +173,8 @@ int const maxValueColumn = 100000;
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return  self.columnModels.count;
 }
--(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    
-    
-}
+
+
 //-(void)collectionView:(UICollectionView *)collectionView {
 //    [self updateModel];
 //
@@ -175,16 +182,18 @@ int const maxValueColumn = 100000;
 //-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 //    [self updateModel];
 //}
+
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"decele");
-    [self updateModel];
-    [self scrollEdit];
+   
+    
+    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+    int  index = (scrollView.contentOffset.x+(self.bottomView.frame.size.width/2))/20;
+   
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self scrollToItemIndexPath:indexPath];
 }
--(void)scrollViewDidEndScroll:(UIScrollView *)scrollView{
-    NSLog(@"dsdsds");
-    [self updateModel];
-    [self scrollEdit];
-}
+
 
 #pragma UICollectionViewFlowLayout
 
