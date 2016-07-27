@@ -22,8 +22,16 @@
 }
 -(void)setModel:(ScaleCellModel *)model{
     _model = model;
-    self.hidden = NO;
-    [self redraw];
+    [self hiddenView];
+       [self redraw];
+}
+-(void)hiddenView{
+    [UIView animateWithDuration:1.5f animations:^{
+        self.hidden = NO;
+    }completion:^(BOOL finished) {
+        
+    }];
+
 }
 -(void)redraw{
     CGRect frame = self.conteinerView.superview.frame;

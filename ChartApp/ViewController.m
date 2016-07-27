@@ -14,7 +14,7 @@
 #import "ScaleCell.h"
 
 int const  countColumns = 20000;
-int const maxValueColumn =100000;
+int const maxValueColumn =80000;
 float const  widthCell = 20.0f;
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
@@ -136,7 +136,11 @@ float const  widthCell = 20.0f;
         ScaleCellModel *scaleModel = [ScaleCellModel modelWitchValueLabel:temp.valueLabel height:temp.height positionY:temp.positionY maxValue:maxValue];
         cell.model = scaleModel;
         if(maxValue < temp.positionY ){
-            cell.hidden=YES;
+            [UIView animateWithDuration:1.5f animations:^{
+                cell.hidden=YES;
+            }completion:^(BOOL finished) {
+                
+            }];
         }
 
         
